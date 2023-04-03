@@ -1,0 +1,9 @@
+Use series of swaps, pushes, & rotates
+Sort stack a into ascending order in stack b
+- can go back and forth
+
+- how to represent it?
+	- python visualiser
+	- console visual (like subject sheet)
+
+- use a counter to track 
