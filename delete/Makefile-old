@@ -1,0 +1,55 @@
+NAME = push_swap
+CC = gcc
+CFLAGS += -Wall -Wextra -Werror -Wpedantic -std=c99 -g
+# -c ?
+MAKEFLAGS += --warn-undefined-variables
+
+INCLUDES = ./includes/
+
+SRC_PATH = ./src/
+SRC_FILES =	main.c
+SRC = $(addprefix $(SRC_PATH), $(SRC))
+
+OBJ = $(SRC:.c=.o)
+
+all: $(NAME)
+
+$(NAME): $(OBJ)
+	$(CC) $(CFLAGS) -I . -c $(SRC)
+#	mv *.o src
+
+clean:
+	@echo Removing obj
+	$(RM) $(OBJ) $(NAME)
+
+fclean: clean
+
+re: fclean all
+
+# help:
+# 	@echo Available targets:\n\n
+## This help screen
+help:
+	@printf "Available targets:\n\n"
+	@awk '/^[a-zA-Z\-\_0-9%:\\]+/ { \
+		helpMessage = match(lastLine, /^## (.*)/); \
+		if (helpMessage) { \
+		helpCommand = $$1; \
+		helpMessage = substr(lastLine, RSTART + 3, RLENGTH); \
+	gsub("\\\\", "", helpCommand); \
+	gsub(":+$$", "", helpCommand); \
+		printf "  \x1b[32;01m%-35s\x1b]0m %s\n", helpCommand, helpMessage; \
+		} \
+	} \
+	{ lastLine = $$0 }' $(MAKEFILE_LIST) | sort -u
+	@printf "\n"	
+
+.PHONY: all clean fclean re
+.SHELLFLAGS := -eu -o pipefail -c
+# Bash strict mode prevents subtle bugs
+.DELETE_ON_ERROR:
+
+# substitutions (SRC:.c=.o) vs building files (%.o: %.c)
+
+# Compile Flags
+# -g : debugging info

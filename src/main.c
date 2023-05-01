@@ -10,30 +10,50 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+// #include "../includes/push_swap.h"
 
-static int error_check(t_sort *s)
+# include <stddef.h> //null
+# include <stdlib.h> //malloc
+# include <unistd.h>
+# include <stdio.h> // delete - printf
+
+/**
+ * Struct for each element of a linked list
+ * @param value the number to be sorted
+ * @param index ?
+ * @param pos ?
+ * @param target_pos ?
+ * @param cost_a no. actions to rotate stack_a so element at target_pos gets to top of stack_a
+ * @param cost_b no. actions to rotate stack_b so element at target_pos gets to top of stack_b
+ * @param next pointer to the next node in the list
+*/
+typedef struct s_list
 {
-	while (argv)
-	{
+	int						value;
+	int						index;
+	int						pos;
+	int						target_pos;
+	int						cost_a;
+	int						cost_b;
+	struct s_list	*next;
+}	t_list;
 
-	}
-	if (sizeof(x) == sizeof(int))
-	{
-
-	}
-}
-
-static int save_args(t_sort *s, int argc, char *argv[])
+/**
+ * Struct to hold input parameters and stacks a & b, 
+*/
+typedef struct s_struct
 {
-	s->stack_a = (int *)argv
-}
+	int		argc;
+	char	**argv;
+	t_list	*stack_a;
+	t_list	*stack_b;
+}	t_struct;
 
-int	main(int argc, char *argv[])
+
+int	main(int argc, char **argv)
 {
-	t_sort s;
+	t_struct s;
 
-	if (error_check(&s) == 1)
-		return (1);
-	save_args(&s, argc, argv);
+	set_stacks(&s, argc, argv);
+	return (0);
 }

@@ -12,26 +12,51 @@
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
-	// can i have underscore in project name
-	// how to test ifndef is working
 
 # include <stddef.h> //null
 # include <stdlib.h> //malloc
 # include <unistd.h>
 # include <stdio.h> // delete - printf
 
-// Structs
-typedef struct s_sort
+/**
+ * Struct for each element of a linked list
+ * @param value the number to be sorted
+ * @param index ?
+ * @param pos ?
+ * @param target_pos ?
+ * @param cost_a no. actions to rotate stack_a so element at target_pos gets to top of stack_a
+ * @param cost_b no. actions to rotate stack_b so element at target_pos gets to top of stack_b
+ * @param next pointer to the next node in the list
+*/
+typedef struct s_list
 {
-	void	*stack_a;
-	void	*stack_b;
-}	t_sort;
+	int						value;
+	int						index;
+	int						pos;
+	int						target_pos;
+	int						cost_a;
+	int						cost_b;
+	struct s_list	*next;
+}	t_list;
 
-// main.c
-int		main(int argc, char *argv[]);
+/**
+ * Struct to hold input parameters and stacks a & b, 
+*/
+typedef struct s_struct
+{
+	int		argc;
+	char	**argv;
+	t_list	*stack_a;
+	t_list	*stack_b;
+}	t_struct;
 
-// utils.c
-int		ft_atoi(const char *str);
+// src
+int			main(int argc, char **argv);
+
+// utils
+int			ft_atoi(const char *str);
+void		ft_lstadd_front(t_list **lst, t_list *new);
+t_list	*ft_lstnew(void *content);
 size_t	ft_strlen(const char *str);
 
 

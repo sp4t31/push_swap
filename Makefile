@@ -18,17 +18,21 @@ CFLAGS = -Wall -Werror -Wextra -g -std=c99
 MAKEFLAGS += --warn-undefined-variables
 	# is this being used
 
-INCL = ./includes
-
+INCL_PATH = ./includes
 SRC_PATH = src/
+UTILS_PATH = utils/
+
 SRC_FILES = main.c
+UTILS_FILES = ft_atoi.c \
+	ft_lstadd_back.c \
+	ft_lstadd_front.c \
+	ft_lstnew.c
+
 SRC = $(addprefix $(SRC_PATH), $(SRC_FILES))
-	# does function call 'addprefix' require $()
+UTILS = $(addprefix $(UTILS_PATH), $(UTILS_FILES))
 
 all:
-	$(CC) $(CFLAGS) $(SRC) -I $(INCL) -o $(NAME)
-
-test:
+	$(CC) $(CFLAGS) $(SRC) ${UTILS} -I $(INCL) -o $(NAME)
 
 clean:
 	rm-rf $(NAME)

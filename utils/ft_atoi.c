@@ -1,46 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spatel <spatel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: spatel <sonyaspatel@outlook.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/03 15:14:38 by spatel            #+#    #+#             */
-/*   Updated: 2023/04/03 16:50:49 by spatel           ###   ########.fr       */
+/*   Created: 2023/04/16 00:00:02 by spatel            #+#    #+#             */
+/*   Updated: 2023/04/16 00:00:02 by spatel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
+/**
+ * Converts char into int
+*/
 int	ft_atoi(const char *str)
 {
-	int	sign;
-	int	nbr;
 	int	i;
+	int	nbr;
+	int	sign;
 
-	sign = 1;
-	nbr = 0;
 	i = 0;
+	nbr = 0;
+	sign = 1;
+	if (str[i] == '-')
+		sign *= -1;
 	if (str[i] == '-' || str[i] == '+')
-	{
-		if (str[i] == '-')
-			sign *= -1;
 		i++;
-	}
 	while (str[i] >= '0' && str[i] <= '9')
 	{
 		nbr = nbr * 10 + (str[i] - '0');
 		i++;
 	}
 	return (nbr * sign);
-}
-
-size_t	ft_strlen(const char *str)
-{
-	size_t	i;
-
-	i = 0;
-	while (str[i] != '\0')
-		i++;
-	return (i);
 }
